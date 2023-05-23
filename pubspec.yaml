@@ -1,0 +1,12 @@
+name: numbers_to_words
+description: A Dart package that converts number to words and supports multiple locales.
+version: 0.1.1
+homepage: https://github.com/matiullah-karimi/dart-number-to-words
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  test: ^1.6.3
