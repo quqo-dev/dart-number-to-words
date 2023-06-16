@@ -1,3 +1,4 @@
+import 'locales/th.dart';
 import 'numbers_helper.dart';
 
 class NumberToWords {
@@ -20,7 +21,26 @@ class NumberToWords {
       return soFar;
     }
 
-    return numNames[number] + " ${getHundred(locale)} " + soFar;
+    return numNames[number] +
+        (locale == "th" ? getHundred(locale) : " ${getHundred(locale)} ") +
+        soFar;
+  }
+
+  static String convertToThai(double number) {
+    final bool isInt = number == number.toInt();
+
+    // example: 12.00 -> "12"    -> [12]
+    // example: 12.34 -> "12.34" -> [12, 34]
+    final numStr = number.toString().split(".");
+
+    if (isInt) {
+      return convert(int.parse(numStr[0]), "th") + bahtCurrency;
+    } else {
+      return convert(int.parse(numStr[0]), "th") +
+          bahtCurrency +
+          convert(int.parse(numStr[1]), "th") +
+          satangCurrency;
+    }
   }
 
   static String convert(int number, String locale) {
@@ -64,11 +84,11 @@ class NumberToWords {
         break;
       case 1:
         tradBillions = _convertLessThanOneThousand(billions, locale) +
-            " ${getBillion(locale)} ";
+            (locale == "th" ? getBillion(locale) : " ${getBillion(locale)} ");
         break;
       default:
         tradBillions = _convertLessThanOneThousand(billions, locale) +
-            " ${getBillion(locale)} ";
+            (locale == "th" ? getBillion(locale) : " ${getBillion(locale)} ");
     }
     return tradBillions;
   }
@@ -81,11 +101,11 @@ class NumberToWords {
         break;
       case 1:
         tradMillions = _convertLessThanOneThousand(millions, locale) +
-            " ${getMillion(locale)} ";
+            (locale == "th" ? getMillion(locale) : " ${getMillion(locale)} ");
         break;
       default:
         tradMillions = _convertLessThanOneThousand(millions, locale) +
-            " ${getMillion(locale)} ";
+            (locale == "th" ? getMillion(locale) : " ${getMillion(locale)} ");
     }
     return tradMillions;
   }
@@ -97,14 +117,18 @@ class NumberToWords {
         tradHundredThousands = "";
         break;
       case 1:
-        tradHundredThousands =
-            _convertLessThanOneThousand(hundredThousands, locale) +
-                " ${getThousand(locale)} ";
+        tradHundredThousands = _convertLessThanOneThousand(
+              hundredThousands,
+              locale,
+            ) +
+            (locale == "th" ? getThousand(locale) : " ${getThousand(locale)} ");
         break;
       default:
-        tradHundredThousands =
-            _convertLessThanOneThousand(hundredThousands, locale) +
-                " ${getThousand(locale)} ";
+        tradHundredThousands = _convertLessThanOneThousand(
+              hundredThousands,
+              locale,
+            ) +
+            (locale == "th" ? getThousand(locale) : " ${getThousand(locale)} ");
     }
 
     return tradHundredThousands;

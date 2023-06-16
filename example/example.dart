@@ -7,5 +7,5 @@ void main() {
   NumberToWords.convert(3, "en");
   // three
 
-  print(NumberToWords.convert(3010045, "th"));
+  print(NumberToWords.convertToThai(4185.84));
 }
