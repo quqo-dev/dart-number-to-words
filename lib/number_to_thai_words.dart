@@ -56,7 +56,8 @@ class NumberToThaiWords {
     if (0 == compound[1].compareTo(0)) {
       builder.write(SYMBOLS_TH[2].toString());
     } else {
-      builder.write(getNumberText((compound[1] * 100).toInt()));
+      builder.write(getNumberText(
+          (double.parse(compound[1].toStringAsFixed(2)) * 100).toInt()));
       builder.write(SYMBOLS_TH[3].toString());
     }
     return builder.toString();
