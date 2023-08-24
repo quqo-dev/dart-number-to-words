@@ -8,5 +8,5 @@ void main() {
   NumberToWords.convert(3, "en");
   // three
 
-  print(NumberToThaiWords.getText(12345.5463));
+  print(NumberToThaiWords.getText(212352.30));
 }
